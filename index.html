@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cẩm Nang Hướng Dẫn Sử Dụng: MT_PBR Studio Pro v3.12.0</title>
+<style>
+  @page {
+    size: A4;
+    margin: 14mm 14mm 16mm 14mm;
+    @bottom-right {
+      content: "Trang " counter(page);
+      font-family: 'Segoe UI', Arial, sans-serif;
+      font-size: 8.5pt;
+      color: #64748b;
+    }
+    @bottom-left {
+      content: "MT_PBR Studio Pro v3.12.0 • Hệ Sinh Thái MT_Hub";
+      font-family: 'Segoe UI', Arial, sans-serif;
+      font-size: 8pt;
+      color: #94a3b8;
+    }
+  }
+
+  *, *:before, *:after {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+    color: #1e293b;
+    line-height: 1.55;
+    font-size: 9.8pt;
+    background: #ffffff;
+    margin: 0;
+    padding: 0;
+  }
+
+  .page-break {
+    page-break-after: always;
+  }
+
+  .avoid-break {
+    page-break-inside: avoid;
+  }
+
+  /* COVER PAGE */
+  .cover {
+    height: 100%;
+    min-height: 250mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 32px 24px 24px 24px;
+    background: linear-gradient(145deg, #0f172a 0%, #1e293b 50%, #090d16 100%);
+    color: #ffffff;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::after {
+    content: "";
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 380px;
+    height: 380px;
+    background: radial-gradient(circle, rgba(59,130,246,0.25) 0%, rgba(147,51,234,0.1) 60%, transparent 80%);
+    border-radius: 50%;
+  }
+
+  .cover-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    padding-bottom: 15px;
+  }
+
+  .cover-badge {
+    background: linear-gradient(90deg, #2563eb, #7c3aed);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 8.5pt;
+    padding: 5px 14px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .cover-ecosystem {
+    font-size: 9pt;
+    color: #94a3b8;
+  }
+
+  .cover-main {
+    margin-top: 35px;
+  }
+
+  .cover-title {
+    font-size: 27pt;
+    font-weight: 800;
+    line-height: 1.2;
+    margin: 0 0 12px 0;
+    background: linear-gradient(90deg, #60a5fa, #c084fc, #38bdf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .cover-subtitle {
+    font-size: 12.5pt;
+    font-weight: 400;
+    color: #cbd5e1;
+    margin: 0 0 25px 0;
+    line-height: 1.4;
+  }
+
+  .cover-highlights {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 25px;
+  }
+
+  .cover-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+
+  .cover-card-title {
+    font-size: 9.5pt;
+    font-weight: 700;
+    color: #38bdf8;
+    margin-bottom: 4px;
+  }
+
+  .cover-card-desc {
+    font-size: 8.2pt;
+    color: #94a3b8;
+    line-height: 1.4;
+  }
+
+  .cover-footer {
+    border-top: 1px solid rgba(255,255,255,0.15);
+    padding-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 8.5pt;
+    color: #94a3b8;
+  }
+
+  .author-tag {
+    font-size: 11pt;
+    font-weight: 700;
+    color: #f8fafc;
+  }
+
+  /* HEADINGS */
+  h1 {
+    font-size: 15.5pt;
+    font-weight: 800;
+    color: #0f172a;
+    border-bottom: 2px solid #3b82f6;
+    padding-bottom: 5px;
+    margin: 20px 0 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  h2 {
+    font-size: 12pt;
+    font-weight: 700;
+    color: #1e40af;
+    margin: 14px 0 6px 0;
+    border-left: 3.5px solid #2563eb;
+    padding-left: 8px;
+  }
+
+  h3 {
+    font-size: 10.2pt;
+    font-weight: 700;
+    color: #334155;
+    margin: 10px 0 5px 0;
+  }
+
+  p {
+    margin: 0 0 8px 0;
+  }
+
+  /* CALLOUT BOXES */
+  .callout {
+    border-radius: 6px;
+    padding: 9px 12px;
+    margin: 9px 0;
+    font-size: 9pt;
+  }
+
+  .callout-tip {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-left: 4px solid #16a34a;
+    color: #166534;
+  }
+
+  .callout-info {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-left: 4px solid #2563eb;
+    color: #1e40af;
+  }
+
+  .callout-warning {
+    background: #fffbeb;
+    border: 1px solid #fef3c7;
+    border-left: 4px solid #d97706;
+    color: #92400e;
+  }
+
+  .callout-title {
+    font-weight: 700;
+    margin-bottom: 3px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* TABLES */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0 12px 0;
+    font-size: 8.7pt;
+  }
+
+  th, td {
+    border: 1px solid #cbd5e1;
+    padding: 7px 10px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    background: #f1f5f9;
+    color: #0f172a;
+    font-weight: 700;
+  }
+
+  tr:nth-child(even) {
+    background: #f8fafc;
+  }
+
+  /* STEP LIST */
+  .step-list {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0;
+  }
+
+  .step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 9px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 9px 12px;
+  }
+
+  .step-number {
+    background: #2563eb;
+    color: #ffffff;
+    font-weight: 700;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8.5pt;
+    flex-shrink: 0;
+  }
+
+  /* UI BADGES & BUTTONS */
+  .ui-btn {
+    display: inline-block;
+    background: #0284c7;
+    color: #ffffff;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 8.2pt;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+  }
+
+  .ui-badge {
+    display: inline-block;
+    background: #e2e8f0;
+    color: #334155;
+    font-weight: 600;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 8pt;
+    border: 1px solid #cbd5e1;
+  }
+
+  .kbd {
+    display: inline-block;
+    background: #f1f5f9;
+    border: 1px solid #94a3b8;
+    border-bottom: 2px solid #64748b;
+    border-radius: 3px;
+    padding: 1px 5px;
+    font-size: 8pt;
+    font-weight: 700;
+    font-family: monospace;
+    color: #0f172a;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 8px 0;
+  }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin: 8px 0;
+  }
+
+  .feature-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-left: 3.5px solid #3b82f6;
+    border-radius: 6px;
+    padding: 9px 11px;
+  }
+
+  .feature-card h4 {
+    margin: 0 0 3px 0;
+    color: #1e3a8a;
+    font-size: 9pt;
+  }
+
+  /* WEB RESPONSIVE & TOP NAVIGATION BAR */
+  @media screen {
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      background-color: #0b0f19 !important;
+      background-image: radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.08) 0px, transparent 50%),
+                        radial-gradient(at 100% 100%, rgba(99, 102, 241, 0.08) 0px, transparent 50%) !important;
+      padding-bottom: 80px;
+    }
+    .web-navbar {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      z-index: 99999;
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(56, 189, 248, 0.25);
+      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+      padding: 10px 20px;
+    }
+    .web-navbar-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .web-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 13pt;
+      letter-spacing: -0.3px;
+    }
+    .web-brand span {
+      background: linear-gradient(135deg, #38bdf8, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .web-nav-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .web-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 9pt;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .web-btn-lang {
+      background: #1e293b;
+      color: #94a3b8;
+      border: 1px solid #334155;
+    }
+    .web-btn-lang:hover, .web-btn-lang.active {
+      background: #334155;
+      color: #38bdf8;
+      border-color: #38bdf8;
+    }
+    .web-btn-pdf {
+      background: linear-gradient(135deg, #0284c7, #2563eb);
+      color: #ffffff;
+      border: 1px solid #38bdf8;
+      box-shadow: 0 2px 10px rgba(2, 132, 199, 0.4);
+    }
+    .web-btn-pdf:hover {
+      background: linear-gradient(135deg, #0369a1, #1d4ed8);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.6);
+    }
+    .cover, .chapter, .page {
+      max-width: 960px !important;
+      margin: 25px auto !important;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45) !important;
+      background: #ffffff !important;
+      border-radius: 8px !important;
+      padding: 36px 40px !important;
+      box-sizing: border-box !important;
+    }
+    .cover {
+      background: linear-gradient(145deg, #0f172a 0%, #1e293b 50%, #090d16 100%) !important;
+    }
+  }
+  @media print {
+    .web-navbar {
+      display: none !important;
+    }
+  }
+
+</style>
+</head>
+<body>
+
+<div class="web-navbar">
+  <div class="web-navbar-inner">
+    <a href="index.html" class="web-brand">
+      🏛️ <span>MT Studio</span> | MT_PBR Studio Pro v3.12.0
+    </a>
+    <div class="web-nav-right">
+      <a href="index.html" class="web-btn web-btn-lang active">🇻🇳 Tiếng Việt</a>
+      <a href="en.html" class="web-btn web-btn-lang">🇬🇧 English</a>
+      <a href="Huong_Dan_Su_Dung_MT_PBR_Studio.pdf" target="_blank" download class="web-btn web-btn-pdf">📥 Tải PDF (2.0 MB)</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ======================================================================= -->
+<!-- TRANG BÌA (COVER PAGE) -->
+<!-- ======================================================================= -->
+<div class="cover">
+  <div class="cover-header">
+    <div class="cover-badge">Cẩm Nang Hướng Dẫn Sử Dụng Chuyên Sâu</div>
+    <div class="cover-ecosystem">Hệ Sinh Thái MT_Hub Master • Blender 4.0 - 5.3+</div>
+  </div>
+
+  <div class="cover-main">
+    <h1 class="cover-title">MT_PBR STUDIO PRO</h1>
+    <div class="cover-subtitle">
+      Giải Pháp Thiết Kế Vật Liệu PBR & Ánh Sáng Kiến Trúc 1-Click Cho Blender
+    </div>
+
+    <div class="cover-highlights">
+      <div class="cover-card">
+        <div class="cover-card-title">⚡ Tạo Maps PBR 1-Click & Bắt Sáng Vải</div>
+        <div class="cover-card-desc">Biến 1 ảnh texture thường thành bộ vật liệu nổi khối 3D sống động; công nghệ Micro-Sheen khử hoàn toàn bóng nhựa vải sofa và đệm da.</div>
+      </div>
+      <div class="cover-card">
+        <div class="cover-card-title">🌪️ Phủ Vết Xước & Bụi Bẩn Trực Quan</div>
+        <div class="cover-card-desc">Di chuyển và xoay vết xước trực tiếp trên khung nhìn 3D bằng chuột (phím G, R); bộ lọc giữ sạch mặt nóc tủ thông minh.</div>
+      </div>
+      <div class="cover-card">
+        <div class="cover-card-title">💎 Đá Xuyên Sáng Đỉnh Cao (Backlit Onyx)</div>
+        <div class="cover-card-desc">Tạo vách tivi, quầy bar đá phát quang lung linh; nút Invert đảo chiều linh hoạt giữa thân đá sáng hoặc đường vân sáng.</div>
+      </div>
+      <div class="cover-card">
+        <div class="cover-card-title">🧭 Căn Thớ Gỗ & Chiếu Box UVW Nhanh</div>
+        <div class="cover-card-desc">Căn thớ vân gỗ dọc/ngang 1-click; chiếu vật liệu 6 hướng không cần unwrap UV; Viewport HDRI siêu nhẹ chống đơ máy.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover-footer">
+    <div>
+      <div style="color: #64748b; font-size: 7.5pt; text-transform: uppercase; margin-bottom: 2px;">Đơn Vị Phát Triển</div>
+      <div class="author-tag">MT Studio • MT_Hub Ecosystem</div>
+      <div style="color: #94a3b8; font-size: 8pt;">Hệ sinh thái Add-on Đồ Họa & Kiến Trúc Chuyên Nghiệp</div>
+    </div>
+    <div style="text-align: right;">
+      <div style="color: #cbd5e1; font-weight: 600;">Phiên bản: v3.12.0 Pro • Tương thích: Blender 4.0 - 5.3+</div>
+      <div style="color: #64748b; font-size: 7.5pt;">Ấn bản Tiếng Việt chuẩn hóa</div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================================================================= -->
+<!-- CHƯƠNG 1: BẮT ĐẦU & TRẠM ĐIỀU HÀNH MT_HUB -->
+<!-- ======================================================================= -->
+<div class="page-break"></div>
+<div class="avoid-break">
+  <h1><span>🔗</span> Chương 1: Bắt Đầu Nhanh & Trạm Điều Hành MT_Hub</h1>
+  
+  <p>
+    <strong>MT_PBR Studio Pro</strong> được thiết kế theo quy chuẩn công thái học chuyên nghiệp: Tinh gọn, trực quan, tập trung tối đa vào không gian làm việc của nghệ sĩ và kiến trúc sư. Add-on liên kết trực tiếp với trạm điều hành <strong>MT_Hub Master</strong> để bảo đảm bản quyền và cập nhật tính năng mới nhất.
+  </p>
+
+  <h2>1.1. Cài Đặt 1-Click Vào Blender</h2>
+  <ol class="step-list">
+    <li class="step-item">
+      <div class="step-number">1</div>
+      <div>Mở Blender -> Chọn menu <strong>Edit</strong> > <strong>Preferences</strong> > tab <strong>Add-ons</strong>.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-number">2</div>
+      <div>Bấm nút <strong>Install...</strong> ở góc trên bên phải -> Chọn file nén <code>MT_PBR_Studio.zip</code> -> Tích chọn BẬT add-on.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-number">3</div>
+      <div>Nhấn phím <span class="kbd">N</span> trên khung nhìn 3D Viewport để mở thanh Sidebar -> Chọn tab <strong>MT_PBR Studio Pro</strong>.</div>
+    </li>
+  </ol>
+
+  <h2>1.2. Thanh Trạng Thái Liên Kết MT_Hub</h2>
+  <p>
+    Ngay ở đầu bảng điều khiển, bạn sẽ thấy thanh trạng thái kết nối trực tiếp với trạm điều hành MT_Hub:
+  </p>
+  <ul>
+    <li><strong>Khi đang dùng thử</strong>: Hiển thị thời gian còn lại, ví dụ: <code>MT_Hub: Dùng thử (4 ngày)</code> kèm icon đồng hồ.</li>
+    <li><strong>Khi đã kích hoạt</strong>: Hiển thị <code>MT_Hub: Đã Kích Hoạt</code> màu xanh biểu thị bản quyền hợp lệ vĩnh viễn.</li>
+    <li><strong>Nút [ Mở MT_Hub ]</strong>: Bấm nút này để chuyển ngay lập tức sang tab quản trị <strong>MT Hub</strong> trên Sidebar khi bạn cần kiểm tra bản quyền, tải thêm add-on hoặc cập nhật phiên bản mới.</li>
+    <li><strong>Trường hợp MT_Hub vô tình bị tắt</strong>: Hệ thống sẽ hiển thị nút bấm màu đỏ <code>[ ⚡ TỰ ĐỘNG BẬT MT_HUB ]</code>. Chỉ cần bấm 1 click, add-on MT_Hub sẽ tự động bật lại ngay lập tức mà bạn không cần mở lại Preferences!</li>
+  </ul>
+
+  <h2>1.3. Tiện Ích Chuyển Đổi Song Ngữ & Thu Gọn Bảng Làm Việc</h2>
+  <div class="grid-2">
+    <div class="feature-card">
+      <h4>🌐 Song Ngữ Tiếng Việt & English 100%</h4>
+      <p style="font-size:8.3pt; color:#475569;">Bấm chọn nhanh giữa 2 nút <span class="ui-btn">Tiếng Việt</span> hoặc <span class="ui-btn" style="background:#475569;">English</span>. Toàn bộ tiêu đề, nhãn thuộc tính, hướng dẫn và thông báo hệ thống sẽ lập tức chuyển đổi mượt mà.</p>
+    </div>
+    <div class="feature-card">
+      <h4>↕️ Thu Gọn & Mở Rộng 1-Click</h4>
+      <p style="font-size:8.3pt; color:#475569;">Hai nút <span class="ui-badge">🔽 Mở Rộng Tất Cả</span> và <span class="ui-badge">🔼 Thu Gọn Tất Cả</span> giúp bạn đóng mở toàn bộ các bảng tác vụ trong nháy mắt, giữ cho thanh công cụ luôn gọn gàng.</p>
+    </div>
+  </div>
+
+  <h2>1.4. Bộ Lọc 8 Tab Tác Vụ Chuyên Môn</h2>
+  <p>
+    Thanh <strong>Bộ Lọc Tab Tác Vụ</strong> giúp bạn tập trung vào đúng phần việc mình đang làm mà không bị các bảng khác làm rối mắt:
+  </p>
+  <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:6px; padding:8px 10px; font-size:8.7pt;">
+    • <strong>👁️ Tất Cả</strong>: Mở toàn bộ các mục • <strong>🖼️ Texture</strong>: Quản lý ảnh nạp ngoài<br>
+    • <strong>🎨 PBR</strong>: Tinh chỉnh độ nhám, độ bóng, màu sắc • <strong>🌪️ Dirt/Xước</strong>: Phủ bụi bẩn và vết xước<br>
+    • <strong>📐 UVW</strong>: Căn thớ gỗ và phép chiếu • <strong>🌅 HDRI</strong>: Bầu trời và ánh sáng 360°<br>
+    • <strong>🏔️ Lồi Lõm</strong>: Độ nổi khối Displacement • <strong>📦 Xuất</strong>: Xuất và gom texture dự án
+  </div>
+</div>
+
+<!-- ======================================================================= -->
+<!-- CHƯƠNG 2: THƯ VIỆN 50 MẪU PBR & BÚT HÚT THẦN TỐC -->
+<!-- ======================================================================= -->
+<div class="page-break"></div>
+<div class="avoid-break">
+  <h1><span>📚</span> Chương 2: Thư Viện 50 Vật Liệu PBR & Bút Hút Sao Chép</h1>
+  
+  <p>
+    MT_PBR Studio Pro cung cấp sẵn kho dữ liệu <strong>50 mẫu vật liệu PBR tiêu chuẩn</strong> được thiết lập sẵn đầy đủ tính chất vật lý quang học (độ bóng, độ nhám, khúc xạ, kim loại, độ sâu) chuẩn xác theo thực tế kiến trúc:
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 22%;">Họ Vật Liệu</th>
+        <th style="width: 38%;">Các Mẫu Tiêu Biểu Trong Thư Viện</th>
+        <th style="width: 40%;">Ứng Dụng Thực Tế Trong Kiến Trúc</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>🪵 1. Gỗ (WOOD)</strong></td>
+        <td>Acrylic bóng gương, Melamine, Sơn PU mờ, Sồi tự nhiên, Gỗ xẻ thô...</td>
+        <td>Tủ bếp Acrylic, sàn gỗ, bàn ghế sồi, lam sóng trang trí.</td>
+      </tr>
+      <tr>
+        <td><strong>⚙️ 2. Kim Loại (METAL)</strong></td>
+        <td>Gương soi phẳng lì, Inox bóng kính, Inox xước hairline, Vàng 24K, Đồng đỏ...</td>
+        <td>Gương toilet, nẹp chỉ inox mạ PVD vàng, tay nắm cửa, vòi sen sen tắm.</td>
+      </tr>
+      <tr>
+        <td><strong>🏛️ 3. Đá & Gạch (STONE)</strong></td>
+        <td>Marble bóng kính, Granite vân mây, Gạch men mờ, Đá băm nhám vỉa hè...</td>
+        <td>Mặt bàn bếp đá trắng sứ, đá lát vỉa hè, ốp tường trang trí phòng khách.</td>
+      </tr>
+      <tr>
+        <td><strong>🎨 4. Sơn & Phủ (PAINT)</strong></td>
+        <td>Sơn tường mờ (Matte), Sơn bóng Satin, Sơn kim loại ánh nhũ, Sơn bệt...</td>
+        <td>Tường nội thất Jotun/Dulux, cánh tủ gỗ công nghiệp sơn bệt màu pastel.</td>
+      </tr>
+      <tr>
+        <td><strong>🪟 5. Kính (GLASS)</strong></td>
+        <td>Kính trong suốt, Kính mờ phun cát, Kính trà đen, Kính sọc sóng Fluted...</td>
+        <td>Vách tắm kính, cửa sổ nhôm kính, cánh tủ áo kính gợn sóng sang trọng.</td>
+      </tr>
+      <tr>
+        <td><strong>🌊 6. Nước 3D (WATER)</strong></td>
+        <td>Nước hồ bơi nắng gợn sóng, Biển đại dương, Suối chảy, Mặt hồ phẳng...</td>
+        <td>Hồ bơi biệt thự, thác nước tiểu cảnh, bể cá thủy sinh.</td>
+      </tr>
+      <tr>
+        <td><strong>🧴 7. Nhựa & Sứ (PLASTIC)</strong></td>
+        <td>Sứ vệ sinh bóng kính, Nhựa gia dụng ABS, Cao su đệm giảm chấn...</td>
+        <td>Bồn cầu Toto sứ bóng, vỏ thiết bị điện tử, chi tiết nội thất nhựa.</td>
+      </tr>
+      <tr>
+        <td><strong>🧵 8. Vải & Da (FABRIC)</strong></td>
+        <td>Da bò sofa bóng, Da lộn Suede, Vải nỉ Canvas thô, Vải nhung Velvet, Rèm lụa...</td>
+        <td>Sofa nỉ cao cấp, đệm da bò, rèm cửa hai lớp cản nắng.</td>
+      </tr>
+      <tr>
+        <td><strong>🏢 9. Bê Tông (CONCRETE)</strong></td>
+        <td>Bê tông mài bóng (Polished), Bê tông ván khuôn mộc, Thạch cao trần...</td>
+        <td>Sàn nhà xưởng, vách tường phong cách Industrial, trần thạch cao phẳng.</td>
+      </tr>
+      <tr>
+        <td><strong>💡 10. Đèn & Đá Xuyên Sáng</strong></td>
+        <td>LED 3000K (Vàng ấm), LED 4000K, LED 6500K, <strong>Đá Xuyên Sáng Onyx</strong>...</td>
+        <td>Khe hắt trần thạch cao, biển hiệu quảng cáo, quầy bar đá phát quang.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>2.1. Bút Hút Vật Liệu Eyedropper Thần Tốc</h2>
+  <p>
+    Thay vì phải gán lại từng thông số phức tạp cho các vật thể giống nhau, bạn chỉ cần dùng <strong>Bút Hút Eyedropper</strong>:
+  </p>
+  <div class="step-item">
+    <div class="step-number">👉</div>
+    <div>
+      <strong>Cách dùng</strong>: Chọn vật thể đích cần gán vật liệu -> Tại mục <strong>📚 THƯ VIỆN PBR</strong>, bấm vào biểu tượng chiếc bút hút <span class="ui-badge">🧪 Bút Hút</span> -> Chấm chuột vào bất kỳ vật thể mẫu nào có sẵn trong cảnh. Toàn bộ vật liệu, texture, độ nổi khối và hiệu ứng sẽ được sao chép sang vật thể đích ngay tức thì!
+    </div>
+  </div>
+
+  <h2>2.2. Tùy Chọn "Tạo Mới Độc Lập" (Chống Ghi Đè Nhầm)</h2>
+  <p>
+    Khi tích chọn <span class="ui-badge">☑ Tạo Mới Độc Lập (Không Ghi Đè)</span>, mỗi lần bạn bấm gán vật liệu hoặc tinh chỉnh, add-on sẽ tự động nhân bản ra một phiên bản vật liệu riêng biệt cho vật thể đang chọn. Nhờ đó, bạn thoải mái đổi màu tủ lạnh hay mặt bàn mà không lo ảnh hưởng đến các đồ vật khác đang dùng chung vật liệu cũ.
+  </p>
+</div>
+
+<!-- ======================================================================= -->
+<!-- CHƯƠNG 3: TỰ ĐỘNG TẠO MAPS PBR 1-CLICK TỪ ẢNH THƯỜNG -->
+<!-- ======================================================================= -->
+<div class="page-break"></div>
+<div class="avoid-break">
+  <h1><span>⚡</span> Chương 3: Tác Vụ Tạo Maps PBR 1-Click & Khử Bóng Nhựa Vải</h1>
+  
+  <h2>3.1. Vấn Đề Khi Tải Ảnh Texture Trên Mạng</h2>
+  <p>
+    Đa số texture bạn tải từ Google, Pinterest hay website của hãng gạch/gỗ thường chỉ là <strong>1 file ảnh màu duy nhất (Base Color / Diffuse)</strong>. Khi gán trực tiếp vào Blender, vật thể trông rất giả tạo: phẳng lì như tờ giấy dán, không có thớ gân, bề mặt bóng nhờn như quả bóng nhựa.
+  </p>
+
+  <h2>3.2. Tính Năng Tạo Trọn Bộ Maps PBR 1-Click</h2>
+  <p>
+    Chỉ từ 1 ảnh texture thường bất kỳ, MT_PBR Studio Pro sẽ tự động phân tích và tạo trọn vẹn 4 kênh bản đồ chuyên dụng:
+  </p>
+  <div class="grid-2">
+    <div class="feature-card">
+      <h4>1. Bản Đồ Nổi Khối 3D (Normal Map)</h4>
+      <p style="font-size:8.3pt; color:#475569;">Tạo chiều sâu nổi khối thật cho từng viên gạch, mạch vữa hay đường lồi lõm của đá tự nhiên khi có ánh đèn chiếu xiên.</p>
+    </div>
+    <div class="feature-card">
+      <h4>2. Bản Đồ Gân Vi Mô (Micro Bump)</h4>
+      <p style="font-size:8.3pt; color:#475569;">Tái tạo trọn vẹn các chi tiết li ti: từng sợi vải dệt trên sofa, thớ nứt dăm của gỗ sồi và lỗ chân lông trên bề mặt da.</p>
+    </div>
+    <div class="feature-card">
+      <h4>3. Bản Đồ Độ Nhám (Roughness Map)</h4>
+      <p style="font-size:8.3pt; color:#475569;">Tự động phân bổ vùng bóng và vùng mờ chân thực: rãnh gỗ sẽ mờ nhám, phần vân sáng sẽ phản chiếu ánh đèn lung linh.</p>
+    </div>
+    <div class="feature-card">
+      <h4>4. Bản Đồ Góc Kẹt (Cavity / AO Map)</h4>
+      <p style="font-size:8.3pt; color:#475569;">Tạo bóng tối tự nhiên tại các khe rãnh sâu, giúp vật liệu có chiều sâu 3D tách bạch rõ ràng.</p>
+    </div>
+  </div>
+
+  <h2>3.3. Tính Năng Bắt Sáng Vải & Da (Micro-Sheen) Khử Hoàn Toàn Bóng Nhựa</h2>
+  <div class="callout callout-tip">
+    <div class="callout-title">💡 Giải Quyết Triệt Để Lỗi "Bóng Nhựa" Khi Render Sofa</div>
+    Vải sofa nỉ, nhung hay da bò thật trong tự nhiên có một lớp lông tơ vi mô khuếch tán ánh sáng ở mép viền. Tính năng <strong>Micro-Sheen</strong> của add-on tự động kích hoạt lớp bắt sáng này, triệt tiêu 100% cảm giác trơn trượt như bóng nhựa, mang lại chất cảm sofa ấm áp, mềm mịn như ảnh chụp tạp chí kiến trúc!
+  </div>
+
+  <h2>3.4. Các Bước Thao Tác Tạo Maps 1-Click</h2>
+  <ol class="step-list">
+    <li class="step-item">
+      <div class="step-number">1</div>
+      <div><strong>Chọn vật thể</strong> đang gắn ảnh texture trên khung nhìn 3D (ví dụ: tấm đệm sofa hoặc mảng tường gạch).</div>
+    </li>
+    <li class="step-item">
+      <div class="step-number">2</div>
+      <div>Tại mục <strong>🎨 TINH CHỈNH PBR</strong>, chọn mức độ nổi khối mong muốn: <span class="ui-badge">Nhẹ</span> / <span class="ui-badge" style="background:#dbeafe; color:#1e40af;">Vừa (Khuyên Dùng)</span> / <span class="ui-badge">Mạnh</span>.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-number">3</div>
+      <div>Bấm nút lớn: <span class="ui-btn" style="background:#2563eb; padding: 4px 14px;">⚡ TẠO TRỌN BỘ MAPS PBR (Normal, Bump, Rough, AO)</span>. Toàn bộ vật liệu sẽ được biến hóa thành chuẩn PBR cao cấp trong chưa đầy 1 giây!</div>
+    </li>
+  </ol>
+</div>
+
+<!-- ======================================================================= -->
+<!-- CHƯƠNG 4: PHỦ BỤI BẨN, VẾT XƯỚC & VỆT NƯỚC CHẢY -->
+<!-- ======================================================================= -->
+<div class="page-break"></div>
+<div class="avoid-break">
+  <h1><span>🌪️</span> Chương 4: Tác Vụ Phủ Vết Xước, Bụi Bẩn & Vệt Nước Chảy</h1>
+  
+  <p>
+    Trong đồ họa hiện đại, vật liệu quá hoàn hảo phẳng lì trông sẽ giống hoạt hình. Tính năng <strong>Surface Imperfections</strong> giúp đưa các vết xước chân thực, vệt nước ố chảy hay bụi bám góc tường vào vật thể để tạo chiều sâu thời gian cho công trình.
+  </p>
+
+  <h2>4.1. Bộ 3 Thanh Trượt Điều Chỉnh Mật Độ Alpha Trực Quan</h2>
+  <p>
+    Sau khi nạp map vết xước/bụi bẩn, bạn có thể kiểm soát chính xác mức độ bám bẩn bằng 3 thanh trượt:
+  </p>
+  <div class="grid-3">
+    <div class="feature-card">
+      <h4>1. Mật Độ Phủ (Lọc Bụi Mờ)</h4>
+      <div style="font-size:7.5pt; color:#2563eb; font-weight:700;">Thanh trượt: 0.00 -> 0.95</div>
+      <p style="font-size:8.2pt; color:#475569; margin-top:4px;">Kéo sang phải để lọc sạch lớp bụi mờ li ti, chỉ giữ lại các vệt xước đậm nét; kéo sang trái để bụi phủ lan rộng khắp bề mặt.</p>
+    </div>
+    <div class="feature-card">
+      <h4>2. Độ Tương Phản Đen/Trắng</h4>
+      <div style="font-size:7.5pt; color:#2563eb; font-weight:700;">Thanh trượt: -1.00 -> 5.00</div>
+      <p style="font-size:8.2pt; color:#475569; margin-top:4px;">Tách biệt rõ ranh giới giữa phần sạch và phần bẩn, giúp vết xước rạch sắc cạnh hoặc làm mềm mại các vệt ố nước chảy.</p>
+    </div>
+    <div class="feature-card">
+      <h4>3. Độ Đậm Nhạt (Brightness)</h4>
+      <div style="font-size:7.5pt; color:#2563eb; font-weight:700;">Thanh trượt: -1.00 -> 1.00</div>
+      <p style="font-size:8.2pt; color:#475569; margin-top:4px;">Tăng hoặc giảm độ sáng tổng thể, điều khiển lớp bụi bám dày đặc hay chỉ phảng phất mỏng nhẹ.</p>
+    </div>
+  </div>
+
+  <h2>4.2. Bộ Lọc Thông Minh: Giữ Sạch Mặt Nóc Tủ</h2>
+  <p>
+    Thực tế nước bẩn hay rỉ sét chỉ chảy dọc theo 4 mặt đứng của bức tường hay cánh tủ, không thể bám vô lý trên nóc phẳng bên trên:
+  </p>
+  <ul>
+    <li><strong>Chế độ Tự động (Chỉ Mặt Đứng)</strong>: Tự động giữ sạch 100% mặt nóc tủ và mặt đáy, chỉ cho vệt nước bẩn chảy bám trên 4 mặt đứng xung quanh. Có thanh trượt <span class="ui-badge">Ngưỡng Góc Đứng</span> để tinh chỉnh độ dốc.</li>
+    <li><strong>Chế độ Thủ công (Chỉ Mặt Đang Chọn)</strong>: Vào Edit Mode (<span class="kbd">Tab</span>), quét chọn các mặt bạn muốn có vết bẩn, sau đó bấm <span class="ui-btn">📍 Gán Mặt Đang Chọn</span>. Chỉ các mặt này mới có vết xước.</li>
+  </ul>
+
+  <h2>4.3. Di Chuyển & Xoay Vệt Bẩn Trực Quan Bằng Chuột (Modal Gizmo)</h2>
+  <p>
+    Bấm nút <span class="ui-btn" style="background:#7c3aed;">🎯 BẬT CHẾ ĐỘ DI & XOAY VỆT BẨN</span> để chỉnh vị trí vết xước trực tiếp trên khung nhìn 3D:
+  </p>
+  <div style="background:#f1f5f9; border:1px solid #cbd5e1; border-radius:6px; padding:9px 12px; font-size:8.8pt;">
+    • Phím <span class="kbd">G</span>: Kéo chuột để di chuyển vị trí vệt xước/vết ố đến đúng điểm bạn muốn.<br>
+    • Phím <span class="kbd">R</span>: Xoay chuột để đổi hướng vệt nước chảy xuôi hay chảy chéo (0° - 360°).<br>
+    • <span class="kbd">Con lăn chuột</span>: Lăn tới/lùi để phóng to hoặc thu nhỏ kích thước vệt xước.<br>
+    • Chuột trái (<span class="kbd">LMB</span>): Xác nhận lưu vị trí • Chuột phải (<span class="kbd">RMB</span>): Hủy thao tác.
+  </div>
+</div>
+
+<!-- ======================================================================= -->
+<!-- CHƯƠNG 5: ĐÁ XUYÊN SÁNG (BACKLIT ONYX) & ĐÈN HẮT -->
+<!-- ======================================================================= -->
+<div class="page-break"></div>
+<div class="avoid-break">
+  <h1><span>💎</span> Chương 5: Tác Vụ Tạo Đá Xuyên Sáng (Backlit Onyx) & Đèn Hắt</h1>
+  
+  <h2>5.1. Ứng Dụng Đá Xuyên Sáng Trong Nội Thất Cao Cấp</h2>
+  <p>
+    Đá xuyên sáng (Onyx, Alabaster, Translucent Marble) là điểm nhấn xa hoa nhất trong các thiết kế biệt thự, quầy bar lounge và sảnh lễ tân khách sạn 5 sao. Phía sau phiến đá tự nhiên là hệ đèn LED hắt sáng: vùng đá trong mờ sẽ cho ánh sáng lung linh xuyên thấu qua, tạo nên hiệu ứng phát quang nghệ thuật đầy mê hoặc.
+  </p>
+
+  <h2>5.2. Tính Năng Tự Động Tạo Đá Xuyên Sáng Từ Ảnh Bất Kỳ</h2>
+  <p>
+    Chỉ cần tải 1 ảnh phiến đá vân tự nhiên bất kỳ về máy, add-on sẽ tự động phân tích và tạo hiệu ứng xuyên sáng:
+  </p>
+  <ol class="step-list">
+    <li class="step-item">
+      <div class="step-number">1</div>
+      <div>Chọn bức tường hay quầy bar đá cần tạo hiệu ứng phát sáng.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-number">2</div>
+      <div>Tại mục <strong>📚 THƯ VIỆN PBR</strong>, chọn Họ vật liệu: <span class="ui-badge">💡 ĐÈN PHÁT SÁNG & ĐÁ XUYÊN SÁNG</span> -> Chọn mẫu <span class="ui-badge">💎 Đá Xuyên Sáng Onyx</span> -> Bấm <span class="ui-btn">⚡ GÁN VẬT LIỆU</span>.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-number">3</div>
+      <div>Bấm nút nạp ảnh vân đá của bạn. Phiến đá sẽ lập tức phát sáng rực rỡ theo đúng hình dáng các đường vân!</div>
+    </li>
+  </ol>
+
+  <h2>5.3. Nút Đảo Chiều Sáng (Invert Mode) Cực Kỳ Cơ Động</h2>
+  <p>
+    Tùy theo sở thích thiết kế, bạn có thể chuyển đổi linh hoạt chế độ phát sáng chỉ bằng 1 nút bấm:
+  </p>
+  <div class="grid-2">
+    <div class="feature-card" style="border-left: 3.5px solid #2563eb;">
+      <h4>Chế Độ Tự Nhiên (Tắt Invert)</h4>
+      <p style="font-size:8.2pt; color:#475569;">Phần thân đá ngọc trong suốt phát sáng mạnh mẽ, các dải vân khoáng chất đậm màu sẽ cản sáng tạo độ tương phản sâu. Đây là kiểu hiển thị kinh điển của đá Onyx tự nhiên.</p>
+    </div>
+    <div class="feature-card" style="border-left: 3.5px solid #f59e0b;">
+      <h4>Chế Độ Đảo Chiều (Bật Invert)</h4>
+      <p style="font-size:8.2pt; color:#475569;">Các đường vân nứt rực sáng như những dòng dung nham vàng kim (Glowing Gold Veins), trong khi phần thân đá xung quanh tối màu trầm tĩnh, cực kỳ huyền bí và ấn tượng.</p>
+    </div>
+  </div>
+
+  <h2>5.4. Điều Chỉnh Màu Sắc Đèn LED Hắt & Cường Độ Sáng</h2>
+  <p>
+    Bạn có thể đổi màu ánh sáng đèn hắt phía sau sang màu vàng ấm 3000K, màu trắng tự nhiên hay bất kỳ màu phong thủy nào, đồng thời kéo thanh trượt <span class="ui-badge">Độ Sáng (Strength)</span> để căn chỉnh cường độ sáng lung linh vừa mắt.
+  </p>
+</div>
+
+<!-- ======================================================================= -->
+<!-- CHƯƠNG 6: CĂN THỚ VÂN GỖ, CHIẾU BOX UVW & HDRI SIÊU NHẸ -->
+<!-- ======================================================================= -->
+<div class="page-break"></div>
+<div class="avoid-break">
+  <h1><span>🧭</span> Chương 6: Căn Vân Gỗ, Chiếu Box UVW & Ánh Sáng HDRI Siêu Nhẹ</h1>
+
+  <h2>6.1. Căn Hướng Thớ Vân Gỗ Thông Minh 1-Click</h2>
+  <p>
+    Khi áp texture gỗ lên cánh tủ áo đứng, các ngăn kéo ngang hay mặt bàn dài, thớ gỗ thường bị xoay xiên lệch lạc khiến thiết kế trông thiếu chuyên nghiệp. Bạn có thể căn thẳng lại ngay lập tức:
+  </p>
+  <ul>
+    <li><strong>Nút ↕️ Căn Thớ Vân Gỗ Dọc (Vertical)</strong>: Xoay thớ gỗ chạy thẳng đứng theo chiều cao của cánh tủ áo, tủ bếp hay vách lam đứng.</li>
+    <li><strong>Nút ↔️ Căn Thớ Vân Gỗ Ngang (Horizontal)</strong>: Xoay thớ gỗ chạy ngang theo phương ngăn kéo bàn và mặt bàn dài.</li>
+    <li><strong>Các nút xoay nhanh</strong>: <span class="ui-badge">↺ -90°</span>, <span class="ui-badge">↻ +90°</span>, <span class="ui-badge">🔄 180°</span> giúp đảo chiều thớ vân gỗ tức thì.</li>
+  </ul>
+
+  <h2>6.2. Chế Độ Chiếu Hộp Đa Hướng (Triplanar Box Mapping)</h2>
+  <p>
+    Đối với các vật thể có hình khối uốn lượn phức tạp chưa kịp trải UV (như tảng đá cuội sân vườn, tượng điêu khắc hoặc vách tường cong uốn lượn):
+  </p>
+  <div class="callout callout-info">
+    <div class="callout-title">📐 Chiếu Texture Không Cần Unwrap UV</div>
+    Chỉ cần bấm chọn <strong>Chiếu Hộp (Triplanar Box)</strong> và chỉnh thanh trượt <strong>Hòa Trộn Mép Góc (Blend)</strong>: Texture sẽ được tự động chiếu đều đặn từ cả 6 hướng xung quanh, xóa sạch 100% các vết rách mép nối texture mà không cần tốn hàng giờ unwrap UV thủ công!
+  </div>
+
+  <h2>6.3. Quản Lý Bầu Trời HDRI 360° & Chế Độ Viewport Siêu Nhẹ</h2>
+  <p>
+    Ánh sáng môi trường HDRI giúp không gian nội ngoại thất có ánh sáng tự nhiên và phản xạ gương kính chân thực nhất:
+  </p>
+  <ul>
+    <li><strong>Duyệt nhanh file HDRI</strong>: Bấm <span class="ui-badge">◀ HDRI Trước</span> hoặc <span class="ui-badge">HDRI Sau ▶</span> để đổi qua lại giữa các bầu trời (nắng trưa, hoàng hôn, trời mây studio) trực tiếp trong thư mục.</li>
+    <li><strong>Xoay góc hướng nắng</strong>: Kéo thanh trượt <span class="ui-badge">Xoay Hướng (0° - 360°)</span> để đổi góc nắng chiếu qua cửa sổ vào phòng khách.</li>
+    <li><strong>⚡ Chế Độ Viewport Siêu Nhẹ (Chống Đơ Máy)</strong>: Khi dùng file HDRI dung lượng lớn (12K / 16K nặng 300MB - 500MB), card đồ họa rất dễ bị quá tải tràn VRAM dẫn tới đơ máy. Tính năng Viewport Siêu Nhẹ tự động tạo bản xem trước siêu mượt, giúp bạn vừa thấy trọn vẹn bầu trời và bóng đổ, vừa tiết kiệm 99% VRAM, xoay góc nhìn mượt mà 60 FPS, an toàn tuyệt đối!</li>
+  </ul>
+</div>
+
+<!-- ======================================================================= -->
+<!-- CHƯƠNG 7: XUẤT MAPS PBR & THU GOM DỰ ÁN BÀN GIAO -->
+<!-- ======================================================================= -->
+<div class="page-break"></div>
+<div class="avoid-break">
+  <h1><span>📦</span> Chương 7: Tác Vụ Xuất Maps & Thu Gom Dự Án Bàn Giao</h1>
+
+  <h2>7.1. Công Cụ Thu Gom Maps Dự Án 1-Click (Bundle Textures)</h2>
+  <p>
+    Khi chuẩn bị gửi file 3D cho khách hàng, gửi sang máy tính khác hoặc tải lên Render Farm, texture thường bị thất lạc (báo lỗi màu hồng tím Missing Texture) do nằm rải rác ở nhiều ổ đĩa khác nhau:
+  </p>
+  <div class="step-item">
+    <div class="step-number">✓</div>
+    <div>
+      Bấm nút <span class="ui-btn" style="background:#059669; padding:4px 12px;">📦 GOM TOÀN BỘ MAPS & VẾT XƯỚC VỀ THƯ MỤC NÀY</span>: Add-on sẽ tự động quét toàn bộ cây vật liệu, copy toàn bộ texture, ảnh màu, maps vết xước về một thư mục duy nhất nằm ngay cạnh file <code>.blend</code> của bạn, đồng thời tự động chuyển toàn bộ đường dẫn thành đường dẫn tương đối (Relative Paths <code>//</code>). Bạn chỉ cần nén thư mục lại và gửi đi an tâm 100%, không bao giờ lo mất texture!
+    </div>
+  </div>
+
+  <h2>7.2. Xuất Bộ Maps PBR Chuẩn Game & Kiến Trúc</h2>
+  <p>
+    Nếu bạn cần đưa vật liệu sang các phần mềm render khác (3ds Max V-Ray, Corona, Unreal Engine 5, D5 Render, Lumion hay Unity):
+  </p>
+  <ul>
+    <li>Tích chọn các kênh cần xuất: <span class="ui-badge">☑ BaseColor</span>, <span class="ui-badge">☑ Normal 3D</span>, <span class="ui-badge">☑ Roughness</span>, <span class="ui-badge">☑ Height</span>, <span class="ui-badge">☑ AO Góc Kẹt</span>.</li>
+    <li>Chọn định dạng Normal: <strong>OpenGL (+Y)</strong> cho Blender/Maya/Unity hoặc <strong>DirectX (-Y)</strong> cho 3ds Max/Unreal Engine.</li>
+    <li>Bấm nút <span class="ui-btn">💾 XUẤT BỘ MAPS RA FOLDER</span>: Toàn bộ ảnh sẽ được xuất ra file PNG sắc nét, tên file đặt chuẩn công nghiệp sẵn sàng kéo thả sử dụng ngay.</li>
+  </ul>
+
+  <h2>7.3. Tổng Kết Các Phím Tắt Tiện Dụng</h2>
+  <table style="margin-top: 10px;">
+    <thead>
+      <tr>
+        <th style="width: 25%;">Phím Tắt / Thao Tác</th>
+        <th style="width: 40%;">Chức Năng</th>
+        <th style="width: 35%;">Phạm Vi Hoạt Động</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="kbd">N</span></td>
+        <td>Đóng / Mở thanh Sidebar chứa add-on</td>
+        <td>Khung nhìn 3D Viewport</td>
+      </tr>
+      <tr>
+        <td><span class="kbd">G</span></td>
+        <td>Di chuyển vị trí vệt xước, bụi bẩn</td>
+        <td>Khi bật Chế độ Di & Xoay Vệt bẩn</td>
+      </tr>
+      <tr>
+        <td><span class="kbd">R</span></td>
+        <td>Xoay hướng vệt nước chảy, vệt xước</td>
+        <td>Khi bật Chế độ Di & Xoay Vệt bẩn</td>
+      </tr>
+      <tr>
+        <td><span class="kbd">Con lăn chuột</span></td>
+        <td>Phóng to / Thu nhỏ kích thước vết xước</td>
+        <td>Khi bật Chế độ Di & Xoay Vệt bẩn</td>
+      </tr>
+      <tr>
+        <td><span class="kbd">LMB (Chuột trái)</span></td>
+        <td>Xác nhận vị trí mới của vệt bẩn</td>
+        <td>Khi bật Chế độ Di & Xoay Vệt bẩn</td>
+      </tr>
+      <tr>
+        <td><span class="kbd">RMB (Chuột phải)</span></td>
+        <td>Hủy bỏ thao tác, giữ nguyên vị trí cũ</td>
+        <td>Khi bật Chế độ Di & Xoay Vệt bẩn</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top: 25px; border-top: 2px solid #e2e8f0; padding-top: 12px; text-align: center; font-size: 8.5pt; color: #64748b;">
+    <strong>MT_PBR Studio Pro v3.12.0</strong> • Trạm điều hành <strong>MT_Hub Master</strong> • Hệ sinh thái <strong>MT Studio</strong><br>
+    Tài liệu hướng dẫn sử dụng chính thức dành cho người dùng hệ thống.
+  </div>
+</div>
+
+</body>
+</html>
