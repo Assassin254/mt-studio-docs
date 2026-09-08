@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comprehensive User Guide: MT_PBR Studio Pro v3.12.0</title>
+<style>
+  @page {
+    size: A4;
+    margin: 14mm 14mm 16mm 14mm;
+    @bottom-right {
+      content: "Page " counter(page);
+      font-family: 'Segoe UI', Arial, sans-serif;
+      font-size: 8.5pt;
+      color: #64748b;
+    }
+    @bottom-left {
+      content: "MT_PBR Studio Pro v3.12.0 • MT_Hub Ecosystem";
+      font-family: 'Segoe UI', Arial, sans-serif;
+      font-size: 8pt;
+      color: #94a3b8;
+    }
+  }
+
+  *, *:before, *:after {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+    color: #1e293b;
+    line-height: 1.55;
+    font-size: 9.8pt;
+    background: #ffffff;
+    margin: 0;
+    padding: 0;
+  }
+
+  .page-break {
+    page-break-after: always;
+  }
+
+  .avoid-break {
+    page-break-inside: avoid;
+  }
+
+  /* COVER PAGE */
+  .cover {
+    height: 100%;
+    min-height: 250mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 32px 24px 24px 24px;
+    background: linear-gradient(145deg, #0f172a 0%, #1e293b 50%, #090d16 100%);
+    color: #ffffff;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::after {
+    content: "";
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 380px;
+    height: 380px;
+    background: radial-gradient(circle, rgba(59,130,246,0.25) 0%, rgba(147,51,234,0.1) 60%, transparent 80%);
+    border-radius: 50%;
+  }
+
+  .cover-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    padding-bottom: 15px;
+  }
+
+  .cover-badge {
+    background: #2563eb;
+    color: #ffffff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 8pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .cover-ecosystem {
+    font-size: 8.5pt;
+    color: #94a3b8;
+    font-weight: 500;
+  }
+
+  .cover-main {
+    margin: 40px 0;
+  }
+
+  .cover-title {
+    font-size: 28pt;
+    font-weight: 900;
+    line-height: 1.15;
+    margin: 0 0 10px 0;
+    background: linear-gradient(90deg, #ffffff 30%, #60a5fa 70%, #a855f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .cover-subtitle {
+    font-size: 13pt;
+    color: #cbd5e1;
+    font-weight: 400;
+    margin-bottom: 25px;
+    line-height: 1.4;
+  }
+
+  .cover-highlights {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .cover-card {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    padding: 12px;
+  }
+
+  .cover-card-title {
+    font-size: 9.5pt;
+    font-weight: 700;
+    color: #60a5fa;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .cover-card-desc {
+    font-size: 8pt;
+    color: #94a3b8;
+    line-height: 1.4;
+  }
+
+  .cover-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    padding-top: 15px;
+    font-size: 8.5pt;
+  }
+
+  .author-tag {
+    font-weight: 700;
+    color: #38bdf8;
+  }
+
+  /* HEADINGS */
+  h1 {
+    font-size: 15pt;
+    font-weight: 800;
+    color: #0f172a;
+    border-left: 4px solid #2563eb;
+    padding-left: 10px;
+    margin: 18px 0 10px 0;
+    page-break-after: avoid;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  h1 span {
+    font-size: 13pt;
+  }
+
+  h2 {
+    font-size: 11pt;
+    font-weight: 700;
+    color: #1e3a8a;
+    margin: 14px 0 6px 0;
+    page-break-after: avoid;
+  }
+
+  h3 {
+    font-size: 9.8pt;
+    font-weight: 700;
+    color: #334155;
+    margin: 10px 0 4px 0;
+    page-break-after: avoid;
+  }
+
+  p {
+    margin: 0 0 8px 0;
+    text-align: justify;
+  }
+
+  /* UI BADGES & CODE */
+  .ui-badge {
+    background: #e2e8f0;
+    color: #0f172a;
+    padding: 1.5px 6px;
+    border-radius: 4px;
+    font-size: 8.5pt;
+    font-weight: 600;
+    font-family: 'Consolas', 'Courier New', monospace;
+    border: 1px solid #cbd5e1;
+    display: inline-block;
+  }
+
+  .ui-btn {
+    background: #2563eb;
+    color: #ffffff;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 8.5pt;
+    font-weight: 700;
+    display: inline-block;
+  }
+
+  .ui-key {
+    background: #0f172a;
+    color: #f8fafc;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 8pt;
+    font-family: 'Consolas', monospace;
+    font-weight: 700;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+  }
+
+  /* CALLOUT BOXES */
+  .callout {
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin: 10px 0;
+    font-size: 9pt;
+    page-break-inside: avoid;
+  }
+
+  .callout-info {
+    background: #eff6ff;
+    border-left: 3.5px solid #3b82f6;
+    color: #1e40af;
+  }
+
+  .callout-tip {
+    background: #f0fdf4;
+    border-left: 3.5px solid #22c55e;
+    color: #166534;
+  }
+
+  .callout-warn {
+    background: #fffbeb;
+    border-left: 3.5px solid #f59e0b;
+    color: #92400e;
+  }
+
+  .callout-title {
+    font-weight: 700;
+    margin-bottom: 3px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* TABLES */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0 12px 0;
+    font-size: 8.7pt;
+  }
+
+  th, td {
+    border: 1px solid #cbd5e1;
+    padding: 7px 10px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    background: #f1f5f9;
+    color: #0f172a;
+    font-weight: 700;
+  }
+
+  tr:nth-child(even) {
+    background: #f8fafc;
+  }
+
+  /* STEP LIST */
+  .step-list {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0;
+  }
+
+  .step-item {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px;
+    align-items: flex-start;
+  }
+
+  .step-number {
+    background: #2563eb;
+    color: #ffffff;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8pt;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .step-content {
+    flex: 1;
+  }
+
+  .diagram-box {
+    background: #f8fafc;
+    border: 1px dashed #94a3b8;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    margin: 10px 0;
+    page-break-inside: avoid;
+  }
+
+  /* WEB RESPONSIVE & TOP NAVIGATION BAR */
+  @media screen {
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      background-color: #0b0f19 !important;
+      background-image: radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.08) 0px, transparent 50%),
+                        radial-gradient(at 100% 100%, rgba(99, 102, 241, 0.08) 0px, transparent 50%) !important;
+      padding-bottom: 80px;
+    }
+    .web-navbar {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      z-index: 99999;
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(56, 189, 248, 0.25);
+      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+      padding: 10px 20px;
+    }
+    .web-navbar-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .web-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 13pt;
+      letter-spacing: -0.3px;
+    }
+    .web-brand span {
+      background: linear-gradient(135deg, #38bdf8, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .web-nav-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .web-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 9pt;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .web-btn-lang {
+      background: #1e293b;
+      color: #94a3b8;
+      border: 1px solid #334155;
+    }
+    .web-btn-lang:hover, .web-btn-lang.active {
+      background: #334155;
+      color: #38bdf8;
+      border-color: #38bdf8;
+    }
+    .web-btn-pdf {
+      background: linear-gradient(135deg, #0284c7, #2563eb);
+      color: #ffffff;
+      border: 1px solid #38bdf8;
+      box-shadow: 0 2px 10px rgba(2, 132, 199, 0.4);
+    }
+    .web-btn-pdf:hover {
+      background: linear-gradient(135deg, #0369a1, #1d4ed8);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.6);
+    }
+    .cover, .chapter, .page {
+      max-width: 960px !important;
+      margin: 25px auto !important;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45) !important;
+      background: #ffffff !important;
+      border-radius: 8px !important;
+      padding: 36px 40px !important;
+      box-sizing: border-box !important;
+    }
+    .cover {
+      background: linear-gradient(145deg, #0f172a 0%, #1e293b 50%, #090d16 100%) !important;
+    }
+  }
+  @media print {
+    .web-navbar {
+      display: none !important;
+    }
+  }
+
+</style>
+</head>
+<body>
+
+<div class="web-navbar">
+  <div class="web-navbar-inner">
+    <a href="en.html" class="web-brand">
+      🏛️ <span>MT Studio</span> | MT_PBR Studio Pro v3.12.0
+    </a>
+    <div class="web-nav-right">
+      <a href="index.html" class="web-btn web-btn-lang">🇻🇳 Tiếng Việt</a>
+      <a href="en.html" class="web-btn web-btn-lang active">🇬🇧 English</a>
+      <a href="User_Guide_MT_PBR_Studio_EN.pdf" target="_blank" download class="web-btn web-btn-pdf">📥 Download PDF (1.7 MB)</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ======================================================================= -->
+<!-- COVER PAGE -->
+<!-- ======================================================================= -->
+<div class="cover">
+  <div class="cover-header">
+    <div class="cover-badge">Comprehensive User Guide</div>
+    <div class="cover-ecosystem">MT_Hub Master Ecosystem • Blender 4.0 - 5.3+</div>
+  </div>
+
+  <div class="cover-main">
+    <h1 class="cover-title">MT_PBR STUDIO PRO</h1>
+    <div class="cover-subtitle">
+      1-Click Architectural PBR Material & Lighting Solution for Blender
+    </div>
+
+    <div class="cover-highlights">
+      <div class="cover-card">
+        <div class="cover-card-title">⚡ 1-Click PBR Maps & Fabric Micro-Sheen</div>
+        <div class="cover-card-desc">Converts any single diffuse texture into a complete 3D relief material; Micro-Sheen technology completely eliminates synthetic plastic sheen on sofa fabrics and leather cushions.</div>
+      </div>
+      <div class="cover-card">
+        <div class="cover-card-title">🌪️ Visual Surface Imperfections & Scratches</div>
+        <div class="cover-card-desc">Translate and rotate surface dirt/scratches directly on 3D Viewport using intuitive mouse gizmos (G/R); smart slope mask keeps cabinet tops clean.</div>
+      </div>
+      <div class="cover-card">
+        <div class="cover-card-title">💎 Backlit Translucent Stone (Onyx)</div>
+        <div class="cover-card-desc">Creates glowing TV feature walls and bar counters; Invert mode switches seamlessly between illuminated body or glowing stone veins.</div>
+      </div>
+      <div class="cover-card">
+        <div class="cover-card-title">🧭 Wood Grain Align & Quick Box UVW</div>
+        <div class="cover-card-desc">1-Click wood grain vertical/horizontal alignment; 6-direction Triplanar Box mapping without UV unwrapping; Ultra-lightweight anti-freeze viewport HDRI.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover-footer">
+    <div>
+      <div style="color: #64748b; font-size: 7.5pt; text-transform: uppercase; margin-bottom: 2px;">Developed By</div>
+      <div class="author-tag">MT Studio • MT_Hub Ecosystem</div>
+      <div style="color: #94a3b8; font-size: 8pt;">Professional Architectural 3D & Graphics Add-on Suite</div>
+    </div>
+    <div style="text-align: right;">
+      <div style="color: #cbd5e1; font-weight: 600;">Version: v3.12.0 Pro • Compatibility: Blender 4.0 - 5.3+</div>
+      <div style="color: #64748b; font-size: 7.5pt;">Standard English Edition</div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================================================================= -->
+<!-- CHAPTER 1: QUICK START & MT_HUB CONSOLE -->
+<!-- ======================================================================= -->
+<div class="page-break"></div>
+<div class="avoid-break">
+  <h1><span>🔗</span> Chapter 1: Quick Start & MT_Hub Master Console</h1>
+  
+  <h2>1.1. 1-Click Installation into Blender</h2>
+  <div class="step-list">
+    <div class="step-item">
+      <div class="step-number">1</div>
+      <div class="step-content">Open Blender, navigate to <span class="ui-badge">Edit</span> > <span class="ui-badge">Preferences...</span> > <span class="ui-badge">Add-ons</span>.</div>
+    </div>
+    <div class="step-item">
+      <div class="step-number">2</div>
+      <div class="step-content">Click <span class="ui-btn">Install...</span>, select the <span class="ui-badge">MT_PBR_Studio.zip</span> file, and check the checkbox to activate.</div>
+    </div>
+    <div class="step-item">
+      <div class="step-number">3</div>
+      <div class="step-content">In the 3D Viewport, press key <span class="ui-key">N</span> to open the Sidebar panel and switch to tab <span class="ui-badge">MT_PBR Studio Pro</span>.</div>
+    </div>
+  </div>
+
+  <h2>1.2. Two-Way MT_Hub Master Ecosystem Link</h2>
+  <p>
+    MT_PBR Studio Pro links directly to the <strong>MT_Hub Master</strong> console:
+  </p>
+  <ul>
+    <li><strong>Automatic License Verification</strong>: Recognizes lifetime activation or 5-day trial instantly without re-entering keys.</li>
+    <li><strong>1-Click Online Updates</strong>: Cloud update notifications appear automatically when new versions are released.</li>
+    <li><strong>Real-Time Bilingual Sync</strong>: When you toggle between English and Vietnamese on either tab, both add-ons synchronize immediately.</li>
+  </ul>
+
+  <h2>1.3. 8 Specialized Filter Tabs</h2>
+  <p>
+    Filter your workspace efficiently using the 8 quick tabs at the top of the panel:
+  </p>
+  <div class="diagram-box">
+    • <strong>🌐 ALL</strong>: Show entire panel • <strong>📚 PBR</strong>: 50 Materials & Eyedropper Cloner<br>
+    • <strong>🎨 MAPS</strong>: 1-Click PBR Map Generator • <strong>🌪️ DIRT</strong>: Scratches, Dust & Geometric Dirt/AO<br>
+    • <strong>📐 UVW</strong>: Wood Grain & Box Mapping • <strong>🌅 HDRI</strong>: 360° Lighting & Anti-Freeze Viewport<br>
+    • <strong>🏔️ DISP</strong>: Hybrid 3D Displacement • <strong>📦 EXPORT</strong>: Texture Packing & Game Export
+  </div>
+</div>
+
+<!-- ======================================================================= -->
+<!-- CHAPTER 2: 50 ARCHITECTURAL PBR PRESETS & EYEDROPPER -->
+<!-- ======================================================================= -->
+<div class="page-break"></div>
+<div class="avoid-break">
+  <h1><span>📚</span> Chapter 2: 50 Architectural PBR Presets & Eyedropper Cloner</h1>
+  
+  <p>
+    MT_PBR Studio Pro provides an expansive built-in library of <strong>50 standard architectural PBR materials</strong> pre-calibrated with physically accurate optical parameters (IOR, roughness, metallic, sheen, subsurface):
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 22%;">Material Family</th>
+        <th style="width: 38%;">Key Presets in Library</th>
+        <th style="width: 40%;">Architectural Applications</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>🪵 1. Wood (WOOD)</strong></td>
+        <td>High-gloss Acrylic, Melamine, Matte PU, Natural Oak, Rough Sawn...</td>
+        <td>Acrylic kitchen cabinets, parquet flooring, dining tables, wall slats.</td>
+      </tr>
+      <tr>
+        <td><strong>⚙️ 2. Metal (METAL)</strong></td>
+        <td>Perfect Mirror, Chrome, Hairline Brushed Inox, 24K Gold, Copper...</td>
+        <td>Bathroom mirrors, PVD gold trims, door handles, shower fittings.</td>
+      </tr>
+      <tr>
+        <td><strong>🏛️ 3. Stone & Tile (STONE)</strong></td>
+        <td>Glossy Marble, Cloud Granite, Matte Ceramic, Flamed Pavers...</td>
+        <td>White porcelain countertops, pavement tiles, feature wall claddings.</td>
+      </tr>
+      <tr>
+        <td><strong>🎨 4. Paint (PAINT)</strong></td>
+        <td>Matte Wall Paint, Satin Finish, Metallic Car Paint, Solid Pastel...</td>
+        <td>Interior drywall paint, MDF spray-painted cabinet doors.</td>
+      </tr>
+      <tr>
+        <td><strong>🪟 5. Glass (GLASS)</strong></td>
+        <td>Clear Glass, Frosted Sandblasted, Smoked Black, Fluted Ribbed...</td>
+        <td>Shower enclosures, aluminum windows, luxury ribbed wardrobe doors.</td>
+      </tr>
+      <tr>
+        <td><strong>🌊 6. Procedural Water (WATER)</strong></td>
+        <td>Sunny Pool Ripples, Ocean Waves, Stream, Calm Lake Surface...</td>
+        <td>Villa swimming pools, landscaping fountains, aquariums.</td>
+      </tr>
+      <tr>
+        <td><strong>🧴 7. Plastic & Ceramic (PLASTIC)</strong></td>
+        <td>Sanitary Ceramic, ABS Plastic, Damping Rubber...</td>
+        <td>Porcelain toilets, electronic appliances, interior plastic accents.</td>
+      </tr>
+      <tr>
+        <td><strong>🧵 8. Fabric & Leather (FABRIC)</strong></td>
+        <td>Glossy Leather, Suede, Rough Canvas, Velvet, Silk Drapes...</td>
+        <td>Luxury sofas, leather headboards, double-layer blackout curtains.</td>
+      </tr>
+      <tr>
+        <td><strong>🏢 9. Concrete (CONCRETE)</strong></td>
+        <td>Polished Concrete, Exposed Formwork, Drywall Plaster...</td>
+        <td>Industrial floors, exposed concrete accent walls, ceiling gypsum.</td>
+      </tr>
+      <tr>
+        <td><strong>💡 10. Emissive & Backlit Stone</strong></td>
+        <td>Warm LED 3000K, Neutral 4000K, Cool 6500K, <strong>Backlit Onyx Stone</strong>...</td>
+        <td>Cove ceiling lights, signage, luxury illuminated bar counters.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>2.1. Rapid Eyedropper Material Cloner</h2>
+  <p>
+    Instead of manually setting parameters across multiple objects, use the <strong>Eyedropper Cloner</strong>:
+  </p>
+  <div class="step-item">
+    <div class="step-number">👉</div>
+    <div class="step-content">
+      <strong>Usage</strong>: Select the target object -> In the <strong>📚 PBR LIBRARY</strong> section, click the eyedropper icon <span class="ui-badge">🧪 Eyedropper</span> -> Click on any reference object in the 3D scene. The entire material shader tree, textures, displacement modifiers, and effects are copied instantly!
+    </div>
+  </div>
+
+  <h2>2.2. "Make Single-User Copy" Option (Prevent Accidental Overwrites)</h2>
+  <p>
+    When cloning materials onto multiple objects, checking <span class="ui-badge">Independent Material Copy</span> guarantees that editing parameters on one object will not inadvertently alter the others.
+  </p>
+</div>
+
+<!-- ======================================================================= -->
+<!-- CHAPTER 3: 1-CLICK PBR MAP GENERATOR & FABRIC MICRO-SHEEN -->
+<!-- ======================================================================= -->
+<div class="page-break"></div>
+<div class="avoid-break">
+  <h1><span>⚡</span> Chapter 3: 1-Click PBR Map Generator & Fabric Micro-Sheen</h1>
+
+  <h2>3.1. Common Issues with Web Textures</h2>
+  <p>
+    Most downloaded textures online are flat 8-bit RGB color images lacking Normal, Roughness, or AO maps. Rendering them results in artificial flatness and fake reflections.
+  </p>
+
+  <h2>3.2. 1-Click Complete PBR Map Generator</h2>
+  <p>
+    MT_PBR Studio Pro analyzes your single Base Color image algorithmically and automatically generates all 4 crucial architectural maps:
+  </p>
+  <ul>
+    <li><strong>Normal Map (Sobel Algorithm)</strong>: Extracts directional micro-surface angles for crisp 3D lighting.</li>
+    <li><strong>Micro-Relief Bump</strong>: Adds fine tactile depth without geometry subdivision.</li>
+    <li><strong>Calibrated Roughness Map</strong>: Distributes gloss and matte zones naturally across texture crevices.</li>
+    <li><strong>Cavity Ambient Occlusion (AO)</strong>: Bakes deep shadow crevices in grooved and textured surfaces.</li>
+  </ul>
+
+  <h2>3.3. Fabric & Leather Micro-Sheen (Zero Plastic Sheen)</h2>
+  <p>
+    Synthetic plastic reflections on sofas and cushions are completely eliminated through physical <strong>Micro-Sheen</strong> optical grazing calculation:
+  </p>
+  <div class="callout callout-tip">
+    <div class="callout-title">💡 What is Micro-Sheen?</div>
+    Micro-Sheen simulates millions of microscopic fuzz fibers catching grazing light on fabric edges, providing soft velvety sheen at glancing angles while keeping facing surfaces natural and matte.
+  </div>
+</div>
+
+<!-- ======================================================================= -->
+<!-- CHAPTER 4: SURFACE IMPERFECTIONS, SCRATCHES & ALPHA CONTROLS -->
+<!-- ======================================================================= -->
+<div class="page-break"></div>
+<div class="avoid-break">
+  <h1><span>🌪️</span> Chapter 4: Surface Imperfections, Scratches & Alpha Controls</h1>
+
+  <h2>4.1. 3 Visual Alpha Calibration Sliders</h2>
+  <p>
+    Fine-tune surface dirt, water drip marks, and finger scratches with absolute precision:
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 25%;">Slider Property</th>
+        <th style="width: 35%;">Function Description</th>
+        <th style="width: 40%;">Recommended Practical Values</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Coverage Density (Density)</strong></td>
+        <td>Filters faint dust haze; isolates distinct scratch marks.</td>
+        <td>0.00 (rich haze) to 0.35 (clean surfaces).</td>
+      </tr>
+      <tr>
+        <td><strong>B/W Contrast (Contrast)</strong></td>
+        <td>Sharpens edge separation between dirt and clean areas.</td>
+        <td>0.00 (smooth blend) to 0.50 (crisp edge grime).</td>
+      </tr>
+      <tr>
+        <td><strong>Alpha Brightness (Brightness)</strong></td>
+        <td>Scales the overall intensity and visibility of the imperfection layer.</td>
+        <td>-0.20 (subtle gloss) to +0.30 (heavy weathering).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>4.2. Smart Slope Filter: Keeping Cabinet Tops Clean</h2>
+  <p>
+    Toggle <span class="ui-badge">Clean Upward Faces</span> to automatically exclude vertical dust from horizontal countertops and table tops, mimicking real-world gravity-driven dirt accumulation.
+  </p>
+
+  <h2>4.3. Interactive Mouse Transform Gizmo (Modal G / R)</h2>
+  <p>
+    Click <span class="ui-btn">🎯 Transform Gizmo</span> in the 3D Viewport:
+  </p>
+  <ul>
+    <li>Press <span class="ui-key">G</span>: Move the scratch/dirt map across the surface with mouse.</li>
+    <li>Press <span class="ui-key">R</span>: Rotate the scratch orientation seamlessly.</li>
+    <li>Press <span class="ui-key">S</span>: Scale the imperfection frequency up or down.</li>
+    <li>Click <span class="ui-key">Left Mouse</span>: Confirm new position • <span class="ui-key">Esc</span>: Cancel.</li>
+  </ul>
+</div>
+
+<!-- ======================================================================= -->
+<!-- CHAPTER 5: BACKLIT TRANSLUCENT STONE & EMISSIVE LIGHTING -->
+<!-- ======================================================================= -->
+<div class="page-break"></div>
+<div class="avoid-break">
+  <h1><span>💎</span> Chapter 5: Backlit Translucent Stone & Emissive Lighting</h1>
+
+  <h2>5.1. Luxury Interior Applications</h2>
+  <p>
+    Backlit Onyx and Translucent Stone are staples of ultra-luxury interior architecture, widely specified for illuminated bar counters, hotel reception desks, and glowing TV feature walls.
+  </p>
+
+  <h2>5.2. 1-Click Backlit Stone Generation from Any Image</h2>
+  <p>
+    Load any high-resolution marble or onyx texture: MT_PBR Studio Pro automatically splits luminance channels, routes Base Color to Diffuse, and feeds the extracted optical transparency mask to the Principled BSDF Emission shader.
+  </p>
+
+  <h2>5.3. Flexible Invert Mode (Glowing Veins vs. Glowing Body)</h2>
+  <div class="callout callout-info">
+    <div class="callout-title">🔄 Invert Mode Options</div>
+    • <strong>Veins Glow</strong>: Dense stone veins radiate amber/golden light while the main stone slab remains darker.<br>
+    • <strong>Body Glow</strong>: The main crystal matrix glows brightly while dark mineral veins cast realistic deep silhouettes.
+  </div>
+
+  <h2>5.4. LED Glow Color Tinting & Alpha Preview Mode</h2>
+  <p>
+    Adjust the backlighting color (Warm 3000K, Neutral 4000K, Amber Gold) and toggle <span class="ui-badge">👁️ Preview Alpha</span> to inspect the black-and-white luminosity mask in real time.
+  </p>
+</div>
+
+<!-- ======================================================================= -->
+<!-- CHAPTER 6: WOOD GRAIN ALIGN, BOX UVW & ANTI-FREEZE HDRI -->
+<!-- ======================================================================= -->
+<div class="page-break"></div>
+<div class="avoid-break">
+  <h1><span>🧭</span> Chapter 6: Wood Grain Align, Box UVW & Anti-Freeze HDRI</h1>
+
+  <h2>6.1. Smart 1-Click Wood Grain Alignment</h2>
+  <p>
+    Click <span class="ui-btn">🪵 Align Grain</span> to rotate texture orientation by 90° instantly, aligning grain along long boards, cabinet columns, or table edges without manual UV editing.
+  </p>
+
+  <h2>6.2. Triplanar Box UVW Mapping (No UV Unwrap Required)</h2>
+  <p>
+    Project seamless textures onto complex imported CAD/BIM geometries from 6 spatial directions simultaneously without seam distortion.
+  </p>
+
+  <h2>6.3. 360° HDRI Studio & Anti-Freeze Lightweight Viewport Mode</h2>
+  <p>
+    Rotate sunlight angle freely with the HDRI rotation dial. When working with massive architectural scenes, activate <span class="ui-badge">Lightweight Viewport Mode</span> to save <strong>99% VRAM</strong> and eliminate UI lag completely.
+  </p>
+</div>
+
+<!-- ======================================================================= -->
+<!-- CHAPTER 7: TEXTURE PACKAGING, GAME EXPORT & SHORTCUTS -->
+<!-- ======================================================================= -->
+<div class="page-break"></div>
+<div class="avoid-break">
+  <h1><span>📦</span> Chapter 7: Texture Packaging, Game Export & Shortcuts</h1>
+
+  <h2>7.1. 1-Click Texture Packaging (Render Farm Ready)</h2>
+  <p>
+    Click <span class="ui-btn">📦 Collect & Bundle Textures</span>: All image maps, HDRIs, and alpha masks linked across the blend file are automatically copied into a local <span class="ui-badge">//textures/</span> folder with relative paths, preventing missing files when transferring to render farms.
+  </p>
+
+  <h2>7.2. PBR Map Export for Unreal Engine, Unity & 3ds Max</h2>
+  <p>
+    Bake and export standardized 16-bit PBR image sets (`_BaseColor`, `_Normal`, `_Roughness`, `_Displacement`, `_AO`) formatted for external DCC and game engine pipelines.
+  </p>
+
+  <h2>7.3. Handy Keyboard Shortcut Reference</h2>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 25%;">Shortcut</th>
+        <th style="width: 35%;">Action Context</th>
+        <th style="width: 40%;">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="ui-key">N</span></td>
+        <td>3D Viewport</td>
+        <td>Open Sidebar Panel > Switch to Tab MT_PBR Studio Pro / MT Hub.</td>
+      </tr>
+      <tr>
+        <td><span class="ui-key">G</span> / <span class="ui-key">R</span> / <span class="ui-key">S</span></td>
+        <td>Modal Transform Gizmo</td>
+        <td>Translate, Rotate, or Scale dirt/scratches on viewport surfaces.</td>
+      </tr>
+      <tr>
+        <td><span class="ui-key">Ctrl + Z</span></td>
+        <td>Every Operator</td>
+        <td>Full undo support across all MT_PBR material actions.</td>
+      </tr>
+      <tr>
+        <td><span class="ui-key">Z</span> > Rendered</td>
+        <td>3D Viewport Shading</td>
+        <td>Toggle interactive Cycles / EEVEE Next real-time preview.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top: 25px; padding: 12px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; text-align: center; font-size: 8.5pt; color: #64748b;">
+    <strong>MT_PBR Studio Pro v3.12.0</strong> • Developed by <strong>MT Studio</strong> • Distributed via <strong>MT_Hub Ecosystem</strong><br>
+    Support & Tutorials: <a href="https://www.youtube.com/@minhtuan3d" style="color: #2563eb; text-decoration: none;">youtube.com/@minhtuan3d</a>
+  </div>
+</div>
+
+</body>
+</html>
